@@ -1,10 +1,17 @@
 package com.example.ProjetoCurso.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity /* cria a tabela lá no banco de daddos , que corresponde a essa classe*/
 public class Categoria  implements Serializable {
 
+    @Id /*Indica que esse atributo vai ser a chave primaria lá no banco*/
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  /*Geração de chave primaria*/
     private Integer id;
     private String nome;
 
