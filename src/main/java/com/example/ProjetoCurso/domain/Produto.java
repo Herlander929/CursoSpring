@@ -6,34 +6,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Entity /* cria a tabela lá no banco de daddos , que corresponde a essa classe*/
-public class Categoria  implements Serializable {
 
-    @Id /*Indica que esse atributo vai ser a chave primaria lá no banco*/
+@Entity
+public class Produto implements Serializable {
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)  /*Geração de chave primaria*/
     private Integer id;
     private String nome;
+    private Double preço;
 
-    @ManyToMany(mappedBy = "categorias")
-    private List<Produto> produtos = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(name = "PRODUTO_CATEGORIA",
+            joinColumns  = @JoinColumn(name = "Produto_id"),
+            inverseJoinColumns =  @JoinColumn(name = "categoria_id")
 
 
-    public Categoria() {
+    )
+    private List<Categoria> categorias = new ArrayList<>();
+
+    public Produto(){
 
     }
 
-    public Categoria(Integer id, String nome) {
+    public Produto(Integer id, String nome, Double preço) {
         this.id = id;
         this.nome = nome;
-    }
-
-
-    public List<Produto> getProdutos() {
-        return produtos;
-    }
-
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
+        this.preço = preço;
     }
 
     public Integer getId() {
@@ -52,12 +51,28 @@ public class Categoria  implements Serializable {
         this.nome = nome;
     }
 
+    public Double getPreço() {
+        return preço;
+    }
+
+    public void setPreço(Double preço) {
+        this.preço = preço;
+    }
+
+    public List<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Categoria categoria = (Categoria) o;
-        return id.equals(categoria.id);
+        Produto produto = (Produto) o;
+        return id.equals(produto.id);
     }
 
     @Override
