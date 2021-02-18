@@ -2,6 +2,9 @@ package com.example.ProjetoCurso.domain;
 
 import com.example.ProjetoCurso.domain.enums.EstadoPagamento;
 
+import javax.persistence.Entity;
+
+@Entity
 public class PagamentoComCartao extends Pagamento {
 
     private Integer numeroDeParcelas;

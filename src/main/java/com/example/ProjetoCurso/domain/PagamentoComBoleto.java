@@ -2,8 +2,10 @@ package com.example.ProjetoCurso.domain;
 
 import com.example.ProjetoCurso.domain.enums.EstadoPagamento;
 
+import javax.persistence.Entity;
 import java.util.Date;
 
+@Entity
 public class PagamentoComBoleto extends Pagamento {
     private Date dataVencimento;
     private Date dataPagamento;
