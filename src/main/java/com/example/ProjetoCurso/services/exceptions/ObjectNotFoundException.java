@@ -2,10 +2,13 @@ package com.example.ProjetoCurso.services.exceptions;
 
 public class ObjectNotFoundException extends RuntimeException {
 
-    public ObjectNotFoundException(String msg){
+    public ObjectNotFoundException(String msg)
+    {
+
         super(msg);
     }
-     public ObjectNotFoundException(String msg, Throwable cause){
+     public ObjectNotFoundException(String msg, Throwable cause)
+     {
         super(msg, cause);
      }
 }
