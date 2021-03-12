@@ -1,6 +1,7 @@
 package com.example.ProjetoCurso.services;
 
 import com.example.ProjetoCurso.domain.Categoria;
+import com.example.ProjetoCurso.dto.CategoriaDTO;
 import com.example.ProjetoCurso.repositories.CategoriaRepository;
 import com.example.ProjetoCurso.services.exceptions.DataIntegrityException;
 import com.example.ProjetoCurso.services.exceptions.ObjectNotFoundException;
@@ -54,6 +55,12 @@ public class CategoriaService {
     public Page<Categoria> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
         return repo.findAll(pageRequest);
+
+    }
+    public Categoria fromDTO(CategoriaDTO objDto){
+        return new Categoria(objDto.getId(), objDto.getNome());
+
+
 
     }
 

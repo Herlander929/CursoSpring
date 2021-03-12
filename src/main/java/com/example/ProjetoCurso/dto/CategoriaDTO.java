@@ -2,11 +2,18 @@ package com.example.ProjetoCurso.dto;
 
 
 import com.example.ProjetoCurso.domain.Categoria;
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotEmpty;
 
 import java.io.Serializable;
 
 public class CategoriaDTO implements Serializable {
     private Integer id;
+
+
+    @Length(min =5, max=80, message="O tamanho deve ser entre 5 a 80 caracteres")
+    @NotEmpty(message = "Preenchimnto obrigatório")
     private String nome;
 
     public CategoriaDTO(){
