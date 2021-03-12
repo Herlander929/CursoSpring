@@ -4,8 +4,12 @@ import com.example.ProjetoCurso.domain.Categoria;
 import com.example.ProjetoCurso.repositories.CategoriaRepository;
 import com.example.ProjetoCurso.services.exceptions.DataIntegrityException;
 import com.example.ProjetoCurso.services.exceptions.ObjectNotFoundException;
+import com.sun.javafx.scene.traversal.Direction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,6 +50,11 @@ public class CategoriaService {
     }
     public List<Categoria> findAll(){
         return repo.findAll();
+    }
+    public Page<Categoria> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
+        PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
+        return repo.findAll(pageRequest);
+
     }
 
 }
