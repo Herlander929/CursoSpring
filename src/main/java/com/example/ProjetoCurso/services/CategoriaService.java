@@ -1,12 +1,10 @@
 package com.example.ProjetoCurso.services;
 
 import com.example.ProjetoCurso.domain.Categoria;
-import com.example.ProjetoCurso.domain.Cliente;
 import com.example.ProjetoCurso.dto.CategoriaDTO;
 import com.example.ProjetoCurso.repositories.CategoriaRepository;
 import com.example.ProjetoCurso.services.exceptions.DataIntegrityException;
 import com.example.ProjetoCurso.services.exceptions.ObjectNotFoundException;
-import com.sun.javafx.scene.traversal.Direction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
