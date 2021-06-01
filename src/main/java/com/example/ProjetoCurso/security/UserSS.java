@@ -66,4 +66,8 @@ private Collection<? extends GrantedAuthority> authorities;
     public boolean isEnabled() {
         return true;
     }
+
+    public boolean hashRole(Perfil perfil){
+        return getAuthorities().contains(new SimpleGrantedAuthority(perfil.getDescicao()));
+    }
 }

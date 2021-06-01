@@ -2,12 +2,15 @@ package com.example.ProjetoCurso.services;
 
 import com.example.ProjetoCurso.domain.*;
 import com.example.ProjetoCurso.domain.Cliente;
+import com.example.ProjetoCurso.domain.enums.Perfil;
 import com.example.ProjetoCurso.domain.enums.TipoCliente;
 import com.example.ProjetoCurso.dto.ClienteDTO;
 import com.example.ProjetoCurso.dto.ClienteNewDTO;
 import com.example.ProjetoCurso.repositories.CidadeRepository;
 import com.example.ProjetoCurso.repositories.ClienteRepository;
 import com.example.ProjetoCurso.repositories.EnderecoRepository;
+import com.example.ProjetoCurso.security.UserSS;
+import com.example.ProjetoCurso.services.exceptions.AuthorizationException;
 import com.example.ProjetoCurso.services.exceptions.DataIntegrityException;
 import com.example.ProjetoCurso.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +41,13 @@ public class ClienteService {
     private EnderecoRepository enderecoRepository;
 
     public Cliente find(Integer id){
+
+        UserSS user = UserService.authenticated();
+        if(user==null || !user.hashRole(Perfil.ADMIN) && !id.equals(user.getId())){
+            throw new AuthorizationException("Acesso negado");
+        }
+
+
         Optional<Cliente> obj = repo.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException(
                 "Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));
