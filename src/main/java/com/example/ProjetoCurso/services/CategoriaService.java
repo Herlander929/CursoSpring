@@ -53,6 +53,7 @@ public class CategoriaService {
     public List<Categoria> findAll(){
         return repo.findAll();
     }
+
     public Page<Categoria> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
         return repo.findAll(pageRequest);
