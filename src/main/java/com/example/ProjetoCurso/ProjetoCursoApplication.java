@@ -1,6 +1,8 @@
 package com.example.ProjetoCurso;
 
 
+import com.example.ProjetoCurso.services.S3Service;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,6 +12,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ProjetoCursoApplication implements CommandLineRunner {
 
+	@Autowired
+	private S3Service s3Service;
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetoCursoApplication.class, args);
@@ -17,6 +22,8 @@ public class ProjetoCursoApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		s3Service.uploadFile("C:\\temp\\Compiladores\\lua.jpg");
+
 
 	}
 }
